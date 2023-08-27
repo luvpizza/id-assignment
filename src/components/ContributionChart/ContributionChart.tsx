@@ -6,9 +6,9 @@ import { getContributions } from "../../api/api"
 
 const ContributionChart: FC = () => {
     const [contributionApiData, setcontributionApiData] = useState(null)
-    const [contributionsList, setContributionsList] = useState<
-        (string | number)[][]
-    >([])
+    const [contributionsList, setContributionsList] = useState<(string | number)[][]>([])
+    const [monthList, setMonthList] = useState<string[]>([]) 
+    const dowList = ['Пн', 'Ср', 'Пт'] // dow = день недели (day of the week)
 
     const generateContribution = (index: number) => {
         const newDate = dayjs(new Date())
@@ -23,18 +23,24 @@ const ContributionChart: FC = () => {
     }
 
     useEffect(() => {
-        ;(async function getData() {
+        (async function getData() {
             const response = await getContributions()
             setcontributionApiData(response.data)
             console.log(response.data)
         })()
     }, [])
 
-    // console.log(generateContribution('May 31, 2022', 13, 0))
+    useEffect(()=> {
+        let monthsArr: string[] = []
+        for (let i = 0; i < 12; i++) {
+            monthsArr = [dayjs(new Date()).subtract(i, "month").format("MMM"), ...monthsArr]
+        }
+        setMonthList(monthsArr)
+    },[])
 
     useEffect(() => {
         if (contributionApiData) {
-            const newArr = []
+            let newArr: (string|number)[][] = []
             for (let i = 0; i < 357; i++) {
                 const contributionListElement = generateContribution(i)
                 newArr.push(contributionListElement)
@@ -43,10 +49,21 @@ const ContributionChart: FC = () => {
         }
     }, [contributionApiData])
 
+
     return (
         <div className={s.contribution__chart}>
-            <div className={s.contributions__grid}>
-                {contributionsList.length && contributionsList.reverse().map((contribution: (string | number)[])=>{return <Contribution date={contribution[0].toString()} contributionCount={Number(contribution[1])}/>})}
+            <div className={s.chart__months}>
+                {monthList.length ? monthList.map((month: string) => {return <h4 className={s.chart__month}>{month}</h4>}) : ""}
+            </div>
+                <div className={s.contributions__grid}>
+                    {contributionsList.length ? contributionsList.reverse().map((contribution: (string | number)[])=>{return <Contribution key={contribution[0].toString()} date={contribution[0].toString()} contributionCount={Number(contribution[1])}/>}) : null}
+                    <div className={s.chart__dows}> 
+                        {dowList.length ? dowList.map((dow: string)=>{return <h4 className={s.chart__dow}>{dow}</h4>}) : ""}
+                    </div> 
+                </div>
+
+            <div className={s.chart__color_info}>
+                <h2></h2>
             </div>
         </div>
     )

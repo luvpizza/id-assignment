@@ -11,7 +11,7 @@ const Contribution: FC<ContributionProps> = ({date, contributionCount}) => {
     const [showTooltip, setShowTooltip] = useState(false)
     return (
         <div
-            onMouseOver={()=>setShowTooltip(true)}
+            onClick={()=>setShowTooltip(!showTooltip)}
             onMouseLeave={()=>setShowTooltip(false)}
             className={`${s.contribution} ${
                 contributionCount < 1
