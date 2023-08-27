@@ -1,0 +1,20 @@
+.contribution {
+    margin: 100px;
+    height: 15px;
+    width: 15px;
+    &__none {
+        background: var(--contributions-none);
+    }
+    &__low {
+        background: var(--contributions-low);
+    }
+    &__normal {
+        background: var(--contributions-normal);
+    }
+    &__high {
+        background: var(--contributions-high);
+    }
+    &__veryhigh {
+        background: var(--contributions-very-high);
+    }
+}

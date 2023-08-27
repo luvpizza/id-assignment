@@ -1,0 +1,18 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSaveMode": "file",
+  "prettier.semi": false,
+  "prettier.tabWidth": 4,
+  "prettier.singleAttributePerLine": false,
+  "editor.indentSize": "tabSize",
+  "indentColorizer.colorOnWhiteSpaceOnly": true,
+  "indentColorizer.errorColor": "rgba(128,32,32,0)",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSaveMode": "file"
+  }
+}
