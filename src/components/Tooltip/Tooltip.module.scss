@@ -23,12 +23,13 @@
         row-gap: 4px;
         align-items: center;
     }
+    transition: .15s ease;
     background: #000;
-    width: max-content;
+    width: 185px;
     height: max-content;
     padding: 6px 9px;
     border-radius: 3px;
-    position: absolute;
+    z-index: 99;
     &::before {
         content: "";
         position: absolute;

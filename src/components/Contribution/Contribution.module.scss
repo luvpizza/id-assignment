@@ -3,9 +3,9 @@
     height: 15px;
     width: 15px;
     &__tooltip{
-        right: -52px;
-        top: -45px;
-        position: absolute;
+    position: absolute;
+    top: -48px;
+    right: -90px;
     }
     &__none {
         background: var(--contributions-none);
