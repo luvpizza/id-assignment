@@ -1,7 +1,12 @@
 .contribution {
-    margin: 100px;
+    position: relative;
     height: 15px;
     width: 15px;
+    &__tooltip{
+        right: -52px;
+        top: -45px;
+        position: absolute;
+    }
     &__none {
         background: var(--contributions-none);
     }
@@ -17,4 +22,8 @@
     &__veryhigh {
         background: var(--contributions-very-high);
     }
+    &:hover{
+        border: 1px solid rgba(0, 0, 0, 0.50);
+    }
+
 }

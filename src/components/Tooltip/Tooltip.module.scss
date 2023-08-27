@@ -9,7 +9,14 @@
         color: var(--grey-dark);
     }
 }
+
 .tooltip {
+    &__visible{
+        display: block;
+    }
+    &__hidden{
+        display: none;
+    }
     &__content {
         display: flex;
         flex-direction: column;
@@ -18,6 +25,7 @@
     }
     background: #000;
     width: max-content;
+    height: max-content;
     padding: 6px 9px;
     border-radius: 3px;
     position: absolute;
