@@ -56,14 +56,22 @@ const ContributionChart: FC = () => {
                 {monthList.length ? monthList.map((month: string) => {return <h4 className={s.chart__month}>{month}</h4>}) : ""}
             </div>
                 <div className={s.contributions__grid}>
-                    {contributionsList.length ? contributionsList.reverse().map((contribution: (string | number)[])=>{return <Contribution key={contribution[0].toString()} date={contribution[0].toString()} contributionCount={Number(contribution[1])}/>}) : null}
+                    {contributionsList.length ? contributionsList.reverse().map((contribution: (string | number)[])=>{return <Contribution key={contribution[0].toString()} type={"default"} date={contribution[0].toString()} contributionCount={Number(contribution[1])}/>}) : null}
                     <div className={s.chart__dows}> 
                         {dowList.length ? dowList.map((dow: string)=>{return <h4 className={s.chart__dow}>{dow}</h4>}) : ""}
                     </div> 
                 </div>
 
             <div className={s.chart__color_info}>
-                <h2></h2>
+                <span className={s.info__more_less}>Меньше</span>
+                <div className={s.info__container}>
+                    <Contribution type="descriptive" date={new Date()} contributionCount={0}/>
+                    <Contribution type="descriptive" date={new Date()} contributionCount={1}/>
+                    <Contribution type="descriptive" date={new Date()} contributionCount={11}/>
+                    <Contribution type="descriptive" date={new Date()} contributionCount={21}/>
+                    <Contribution type="descriptive" date={new Date()} contributionCount={30}/>
+                </div>
+                <span className={s.info__more_less}>Больше</span>
             </div>
         </div>
     )

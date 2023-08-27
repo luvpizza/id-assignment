@@ -24,6 +24,13 @@
             gap: 20px;
         }
     }
+    &__color{
+        &_info{
+            margin-top: 15px;
+            display: flex;
+            column-gap: 6px;
+        }
+    }
     &__month {
         &s {
             margin-bottom: 5px;
@@ -35,5 +42,15 @@
         @include font-normal(12px);
         text-transform: capitalize;
         color: var(--grey-default);
+    }
+}
+.info{
+    &__more_less{
+        @include font-normal(8px);
+        color: var(--grey-default);
+    }
+    &__container{
+        display: flex;
+        column-gap: 2px;
     }
 }

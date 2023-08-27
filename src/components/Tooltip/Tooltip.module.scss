@@ -11,6 +11,9 @@
 }
 
 .tooltip {
+    &__description{
+        padding: 7px 0;
+    }
     &__visible{
         display: block;
     }

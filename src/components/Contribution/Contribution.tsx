@@ -3,16 +3,17 @@ import s from "./Contribution.module.scss"
 import Tooltip from '../Tooltip/Tooltip';
 
 interface ContributionProps {
+    type: "default" | "descriptive",
     date: string | Date,
     contributionCount: number,
 }
 
-const Contribution: FC<ContributionProps> = ({date, contributionCount}) => {
+const Contribution: FC<ContributionProps> = ({type, date, contributionCount}) => {
     const [showTooltip, setShowTooltip] = useState(false)
     return (
         <div
-            onClick={()=>setShowTooltip(!showTooltip)}
-            onMouseLeave={()=>setShowTooltip(false)}
+            onClick={() => setShowTooltip(true)}
+            onMouseLeave={() => setShowTooltip(false)}
             className={`${s.contribution} ${
                 contributionCount < 1
                     ? s.contribution__none
@@ -27,12 +28,42 @@ const Contribution: FC<ContributionProps> = ({date, contributionCount}) => {
                     : ""
             }`}
         >
-            <Tooltip
-                visibility={showTooltip}
-                className={s.contribution__tooltip}
-                date={date}
-                contributionCount={contributionCount}
-            />
+            {type === "default" ? (
+                <Tooltip
+                    visibility={showTooltip}
+                    className={s.contribution__tooltip}
+                    date={date}
+                    contributionCount={`${
+                        contributionCount ? contributionCount : ""
+                    } ${
+                        contributionCount
+                            ? contributionCount > 1
+                                ? "contributions"
+                                : "contribution"
+                            : "No contributions"
+                    }`}
+                />
+            ) : type === "descriptive" ? (
+                <Tooltip
+                    visibility={showTooltip}
+                    className={`${s.contribution__tooltip} ${s.contribution__tooltip_descriptive}`}
+                    description={`${
+                        contributionCount < 1
+                            ? "No contributions"
+                            : contributionCount >= 1 && contributionCount <= 9
+                            ? "1 - 9 contributions"
+                            : contributionCount >= 10 && contributionCount <= 19
+                            ? "10 - 19 contributions"
+                            : contributionCount >= 20 && contributionCount <= 29
+                            ? "20 - 29 contributions"
+                            : contributionCount >= 30
+                            ? "30+ contributions"
+                            : ""
+                    }`}
+                />
+            ) : (
+                ""
+            )}
         </div>
     )
 };
